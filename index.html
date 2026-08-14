@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #141414; -webkit-font-smoothing: antialiased; }
+  a { color: #D8F000; text-decoration: none; }
+  a:hover { color: #E8FF16; }
+</style>
+</helmet>
+<div style="font-family: Geist, sans-serif; background: #141414; color: #F5F5F3; min-height: 100vh; padding-bottom: 128px">
+
+  <div style="position: sticky; top: 0; z-index: 50; background: rgba(20,20,20,0.9); border-bottom: 1px solid #333331">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 16px 40px; display: flex; align-items: center; gap: 32px">
+      <img src="assets/lostudio-logo.svg" alt="Lo Studio" style="height: 18px; width: auto; display: block; flex: none" />
+      <div style="display: flex; gap: 20px; font-family: 'Geist Mono', monospace; font-size: 12px; margin-left: auto; flex-wrap: wrap">
+        <a href="#brand" style="color: #97978F">Brand</a>
+        <a href="#alias" style="color: #97978F">Alias</a>
+        <a href="#mapped" style="color: #97978F">Mapped</a>
+        <a href="#responsive" style="color: #97978F">Responsive</a>
+        <a href="#type" style="color: #97978F">Type</a>
+        <a href="#elevation" style="color: #97978F">Elevation</a>
+        <a href="#logo" style="color: #97978F">Logo</a>
+        <a href="#components" style="color: #97978F">Components</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 40px">
+
+    <div style="padding: 96px 0 64px; display: grid; gap: 24px; border-bottom: 1px solid #212120">
+      <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Design system · v1.0</div>
+      <h1 style="margin: 0; font-size: 72px; line-height: 76px; font-weight: 500; letter-spacing: -0.03em; max-width: 16ch; text-wrap: pretty">Lo Studio token system</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 30px; color: #B5B5AE; max-width: 62ch; text-wrap: pretty">Four collections, strictly one-directional: Mapped aliases Alias, Alias aliases Brand. Dark is canonical — every surface below is the real value a component resolves to on the live site.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; border: 1px solid #333331; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 12px; color: #B5B5AE">
+          <span style="width: 14px; height: 14px; border-radius: 4px; background: #D8F000"></span>Lime · #D8F000
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; border: 1px solid #333331; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 12px; color: #B5B5AE">
+          <span style="width: 14px; height: 14px; border-radius: 4px; background: #141414; border: 1px solid #4B4B46"></span>Grey 950 · #141414
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; border: 1px solid #333331; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 12px; color: #B5B5AE">Geist · 100–900</div>
+      </div>
+    </div>
+
+    <div id="brand" style="padding: 80px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Collection 01</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Brand</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">Raw primitives, one mode. Colour groups are named by hue, never by role — role assignment lives one layer up. Grey carries a 4% lime tint so neutrals sit on the same axis as the accent.</p>
+      </div>
+
+      <div style="display: grid; gap: 40px">
+        <sc-for list="{{ brandScales }}" as="g" hint-placeholder-count="5">
+          <div style="display: grid; gap: 12px">
+            <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap">
+              <div style="font-size: 16px; font-weight: 500">{{ g.name }}</div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #7C7C74">{{ g.note }}</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px">
+              <sc-for list="{{ g.steps }}" as="s" hint-placeholder-count="11">
+                <div style="display: grid; gap: 6px">
+                  <div style="height: 64px; border-radius: 8px; border: 1px solid rgba(245,245,243,0.08); background: {{ s.hex }}"></div>
+                  <div style="font-family: 'Geist Mono', monospace; font-size: 10px; line-height: 14px; color: #97978F">{{ s.step }}</div>
+                  <div style="font-family: 'Geist Mono', monospace; font-size: 10px; line-height: 14px; color: #63635C; margin-top: -4px">{{ s.value }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 64px">
+        <div style="padding: 28px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 16px; align-content: start">
+          <div style="font-size: 16px; font-weight: 500">Size · 24 steps</div>
+          <div style="font-size: 14px; line-height: 22px; color: #97978F">Reserved for typography. Layout never reaches in here.</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 11px">
+            <sc-for list="{{ sizeSteps }}" as="v" hint-placeholder-count="24">
+              <span style="padding: 5px 8px; border-radius: 4px; background: #2D2E29; color: #B5B5AE">{{ v }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding: 28px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 16px; align-content: start">
+          <div style="font-size: 16px; font-weight: 500">Type</div>
+          <div style="font-size: 14px; line-height: 22px; color: #97978F">Geist ships the full nine weights, so every Weight token maps 1:1 — no substitutions recorded.</div>
+          <div style="display: grid; gap: 2px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #B5B5AE">
+            <sc-for list="{{ weights }}" as="w" hint-placeholder-count="9">
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #2D2E29">
+                <span>Weight/{{ w.name }}</span><span style="color: #63635C">{{ w.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 48px; display: grid; gap: 20px">
+        <div style="font-size: 16px; font-weight: 500">Spacing · 34 steps on a 4px grid</div>
+        <div style="display: grid; gap: 6px">
+          <sc-for list="{{ spacingSample }}" as="p" hint-placeholder-count="11">
+            <div style="display: flex; align-items: center; gap: 16px">
+              <div style="height: 12px; border-radius: 2px; background: #D8F000; width: {{ p.px }}"></div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74; white-space: nowrap; flex: none">spacing-{{ p.n }}</div>
+            </div>
+          </sc-for>
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #63635C; margin-top: 8px">Showing the working subset · full scale runs 0 → 128</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 48px; display: grid; gap: 20px">
+        <div style="font-size: 16px; font-weight: 500">Radius · same grid, separate decision</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px">
+          <sc-for list="{{ radiusSample }}" as="r" hint-placeholder-count="9">
+            <div style="display: grid; gap: 8px; justify-items: center">
+              <div style="width: 80px; height: 80px; background: #2D2E29; border: 1px solid #40413A; border-radius: {{ r.px }}"></div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #7C7C74">radius-{{ r.n }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #63635C">Components use radius-4 → radius-16 almost exclusively. The scale runs to 128 for pill cases.</div>
+      </div>
+    </div>
+
+    <div id="alias" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Collection 02</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Alias</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">One mode: Lime Theme. Named after the hue rather than "Default" so a second brand theme can be added later without restructuring. Only the Primary row varies per mode.</p>
+      </div>
+      <div style="display: grid; gap: 32px">
+        <sc-for list="{{ aliasRoles }}" as="role" hint-placeholder-count="5">
+          <div style="display: grid; gap: 10px">
+            <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap">
+              <div style="font-size: 16px; font-weight: 500">{{ role.name }}</div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">{{ role.aliases }}</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px">
+              <sc-for list="{{ role.steps }}" as="s" hint-placeholder-count="11">
+                <div style="display: grid; gap: 6px">
+                  <div style="height: 48px; border-radius: 8px; border: 1px solid rgba(245,245,243,0.08); background: {{ s.hex }}"></div>
+                  <div style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #7C7C74">{{ s.step }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 24px; padding: 20px 24px; border-radius: 10px; border: 1px dashed #40413A; font-size: 14px; line-height: 22px; color: #97978F">Secondary is intentionally undefined. The brand runs on lime plus neutrals, so the Secondary group is left out rather than filled with a hue the site never uses.</div>
+    </div>
+
+    <div id="mapped" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Collection 03</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Mapped</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">The UI-facing layer, Dark and Light. Every token points at an Alias token, never at Brand. Icon mirrors Text 1:1, which is why it has no table of its own.</p>
+      </div>
+      <div style="display: grid; gap: 40px">
+        <sc-for list="{{ mappedGroups }}" as="grp" hint-placeholder-count="3">
+          <div style="display: grid; gap: 12px">
+            <div style="font-size: 16px; font-weight: 500">{{ grp.name }}</div>
+            <div style="display: grid; grid-template-columns: minmax(150px, 1.3fr) 1fr 1fr; gap: 1px; background: #2D2E29; border-radius: 10px; overflow: hidden; border: 1px solid #2D2E29">
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">token</div>
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">dark</div>
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">light</div>
+              <sc-for list="{{ grp.rows }}" as="row" hint-placeholder-count="10">
+                <div style="padding: 12px 16px; background: #141414; font-family: 'Geist Mono', monospace; font-size: 12px; color: #F5F5F3">{{ row.token }}</div>
+                <div style="padding: 12px 16px; background: #141414; display: flex; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #97978F">
+                  <span style="width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(245,245,243,0.12); flex: none; background: {{ row.darkHex }}"></span>{{ row.dark }}
+                </div>
+                <div style="padding: 12px 16px; background: #141414; display: flex; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #97978F">
+                  <span style="width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(245,245,243,0.12); flex: none; background: {{ row.lightHex }}"></span>{{ row.light }}
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div id="responsive" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Collection 04</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Responsive</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">Desktop 1440 · Tablet 1024 · Phone 393. Jumper aliases Brand/Spacing; Typescale aliases Brand/Size. Nothing here is a raw number.</p>
+      </div>
+      <div style="display: grid; gap: 32px">
+        <sc-for list="{{ responsiveTables }}" as="t" hint-placeholder-count="5">
+          <div style="display: grid; gap: 12px">
+            <div style="font-size: 16px; font-weight: 500">{{ t.name }}</div>
+            <div style="display: grid; grid-template-columns: minmax(170px, 1.3fr) 1fr 1fr 1fr; gap: 1px; background: #2D2E29; border-radius: 10px; overflow: hidden; border: 1px solid #2D2E29">
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">token</div>
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">desktop</div>
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">tablet</div>
+              <div style="padding: 12px 16px; background: #1D1E1B; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">phone</div>
+              <sc-for list="{{ t.rows }}" as="r" hint-placeholder-count="6">
+                <div style="padding: 11px 16px; background: #141414; font-family: 'Geist Mono', monospace; font-size: 12px; color: #F5F5F3">{{ r.token }}</div>
+                <div style="padding: 11px 16px; background: #141414; font-family: 'Geist Mono', monospace; font-size: 11px; color: #97978F">{{ r.d }}</div>
+                <div style="padding: 11px 16px; background: #141414; font-family: 'Geist Mono', monospace; font-size: 11px; color: #97978F">{{ r.t }}</div>
+                <div style="padding: 11px 16px; background: #141414; font-family: 'Geist Mono', monospace; font-size: 11px; color: #97978F">{{ r.p }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div id="type" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Local styles</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Typography</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">The static scale, separate from the breakpoint variables. Title uses pixel line-heights bound to Brand/Size; Label, Body and Caption sit at 160%, a ratio set directly. Heading is deliberately absent — the source never exposed its values, and inventing them would be worse than leaving the gap visible.</p>
+      </div>
+      <div style="display: grid; gap: 4px">
+        <div style="display: grid; gap: 8px; padding: 0 0 28px; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Title/Title-1/Medium — size-72 / size-88 / 500</div>
+          <div style="font-size: 72px; line-height: 88px; font-weight: 500; letter-spacing: -0.03em">Motion, brand, product</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Title/Title-2/Bold — size-64 / size-76 / 700</div>
+          <div style="font-size: 64px; line-height: 76px; font-weight: 700; letter-spacing: -0.03em">One designer, whole stack</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Title/Title-3/Regular — size-56 / size-68 / 400</div>
+          <div style="font-size: 56px; line-height: 68px; font-weight: 400; letter-spacing: -0.02em">A tight loop built to ship</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Label/Label-1/Semi Bold — size-16 / 160% / 600</div>
+          <div style="font-size: 16px; line-height: 160%; font-weight: 600">Featured projects</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Label/Label-2/Medium — size-14 / 160% / 500</div>
+          <div style="font-size: 14px; line-height: 160%; font-weight: 500">Go-to-market</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Label/Label-3/Regular — size-12 / 160% / 400</div>
+          <div style="font-size: 12px; line-height: 160%; font-weight: 400">Brand Identity</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Body/Body-1/Regular — size-18 / 160% / 400</div>
+          <div style="font-size: 18px; line-height: 160%; font-weight: 400; max-width: 62ch">Early-stage teams need one operator who runs brand design and moves fast without dropping quality.</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Body/Body-3/Regular — size-14 / 160% / 400</div>
+          <div style="font-size: 14px; line-height: 160%; font-weight: 400; max-width: 62ch">Click any project for the full story.</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0; border-bottom: 1px solid #212120">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Caption/Caption-1/Semi Bold — size-10 / 160% / 600</div>
+          <div style="font-size: 10px; line-height: 160%; font-weight: 600; letter-spacing: 0.08em">CASE STUDY · 2026</div>
+        </div>
+        <div style="display: grid; gap: 8px; padding: 28px 0">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Caption/Caption-2/Medium — size-8 / 160% / 500</div>
+          <div style="font-size: 8px; line-height: 160%; font-weight: 500; letter-spacing: 0.08em">LEGAL AND FOOTNOTE SCALE ONLY</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="elevation" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 40px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Local styles</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Elevation</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">Six levels, one shadow colour bound to Alias/Neutral/950. Deliberate deviation: on a #141414 canvas a black shadow is invisible, so dark mode substitutes a Border/secondary hairline plus a raised surface step. Shown on a light panel where the shadow reads.</p>
+      </div>
+      <div style="padding: 48px; border-radius: 12px; background: #F5F5F3; display: flex; flex-wrap: wrap; gap: 28px">
+        <sc-for list="{{ elevations }}" as="e" hint-placeholder-count="6">
+          <div style="display: grid; gap: 10px; justify-items: center">
+            <div style="width: 112px; height: 80px; border-radius: 8px; background: #FFFFFF; box-shadow: {{ e.shadow }}"></div>
+            <div style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #7C7C74">{{ e.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 20px">
+        <div style="padding: 20px 24px; border-radius: 10px; background: #212120; border: 1px solid #333331; font-size: 14px; color: #B5B5AE">Dark equivalent of Elevation/2</div>
+        <div style="padding: 20px 24px; border-radius: 10px; background: #2D2E29; border: 1px solid #40413A; font-size: 14px; color: #B5B5AE">Dark equivalent of Elevation/4</div>
+      </div>
+    </div>
+
+    <div id="logo" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 40px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Assets</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Logo</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">One wordmark, three fills — each bound to an Alias token rather than a loose hex. Vector only: the mark is set in outlines, so it scales from favicon to billboard without a raster fallback.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+        <div style="border-radius: 12px; border: 1px solid #2D2E29; overflow: hidden; display: grid; grid-template-rows: 1fr auto">
+          <div style="background: #141414; padding: 48px 32px; display: flex; align-items: center; justify-content: center; min-height: 160px">
+            <img src="assets/lostudio-logo.svg" alt="Lo Studio, white" style="width: 100%; max-width: 220px; display: block" />
+          </div>
+          <div style="padding: 20px 24px; background: #1D1E1B; border-top: 1px solid #2D2E29; display: grid; gap: 14px">
+            <div style="display: grid; gap: 4px">
+              <div style="font-size: 15px; font-weight: 500">White</div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Neutral/50 · on Surface/page dark</div>
+            </div>
+            <a href="assets/lostudio-logo.svg" download="LoStudio_Logo_White.svg" style="justify-self: start; font-size: 13px; font-weight: 500; padding: 9px 16px; border-radius: 999px; border: 1px solid #4B4B46; color: #F5F5F3" style-hover="border-color: #D8F000; color: #D8F000">Download SVG</a>
+          </div>
+        </div>
+
+        <div style="border-radius: 12px; border: 1px solid #2D2E29; overflow: hidden; display: grid; grid-template-rows: 1fr auto">
+          <div style="background: #F5F5F3; padding: 48px 32px; display: flex; align-items: center; justify-content: center; min-height: 160px">
+            <img src="assets/lostudio-logo-ink.svg" alt="Lo Studio, ink" style="width: 100%; max-width: 220px; display: block" />
+          </div>
+          <div style="padding: 20px 24px; background: #1D1E1B; border-top: 1px solid #2D2E29; display: grid; gap: 14px">
+            <div style="display: grid; gap: 4px">
+              <div style="font-size: 15px; font-weight: 500">Ink</div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">Neutral/950 · on Surface/page light</div>
+            </div>
+            <a href="assets/lostudio-logo-ink.svg" download="LoStudio_Logo_Ink.svg" style="justify-self: start; font-size: 13px; font-weight: 500; padding: 9px 16px; border-radius: 999px; border: 1px solid #4B4B46; color: #F5F5F3" style-hover="border-color: #D8F000; color: #D8F000">Download SVG</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 32px; padding: 24px 28px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29">
+        <div style="display: grid; gap: 6px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Minimum width</div>
+          <div style="font-size: 14px; color: #B5B5AE">88px screen · 24mm print</div>
+        </div>
+        <div style="display: grid; gap: 6px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Clear space</div>
+          <div style="font-size: 14px; color: #B5B5AE">Half the wordmark's cap height on all sides</div>
+        </div>
+        <div style="display: grid; gap: 6px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Nav height</div>
+          <div style="font-size: 14px; color: #B5B5AE">18px desktop · 16px phone</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="components" style="padding: 96px 0 0">
+      <div style="display: grid; gap: 12px; margin-bottom: 48px">
+        <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #D8F000">Library</div>
+        <h2 style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em">Components</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 26px; color: #97978F; max-width: 68ch">Ten families, dark mode. Each one resolves through Mapped only — no component reaches past it.</p>
+      </div>
+
+      <div style="display: grid; gap: 24px">
+
+        <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 24px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Buttons</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+            <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 11px 20px; border-radius: 999px; border: none; background: #D8F000; color: #141414; cursor: pointer" style-hover="background: #E8FF16">Book a call</button>
+            <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 11px 20px; border-radius: 999px; border: 1px solid #4B4B46; background: transparent; color: #F5F5F3; cursor: pointer" style-hover="border-color: #D8F000; color: #D8F000">Secondary</button>
+            <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 11px 20px; border-radius: 999px; border: none; background: transparent; color: #B5B5AE; cursor: pointer" style-hover="color: #F5F5F3">Ghost</button>
+            <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 11px 20px; border-radius: 999px; border: none; background: #333331; color: #63635C; cursor: not-allowed">Disabled</button>
+            <button style="font-family: Geist, sans-serif; font-size: 12px; font-weight: 500; padding: 8px 14px; border-radius: 999px; border: none; background: #D8F000; color: #141414; cursor: pointer">Small</button>
+            <button style="font-family: Geist, sans-serif; font-size: 16px; font-weight: 500; padding: 15px 28px; border-radius: 999px; border: none; background: #D8F000; color: #141414; cursor: pointer">Large</button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
+          <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 20px; align-content: start">
+            <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Inputs</div>
+            <label style="display: grid; gap: 8px; font-size: 14px; color: #B5B5AE">Email
+              <input type="text" defaultValue="hello@lostudio.co" style="font-family: Geist, sans-serif; font-size: 14px; padding: 11px 14px; border-radius: 8px; background: #141414; border: 1px solid #40413A; color: #F5F5F3; outline: none" style-focus="border-color: #D8F000" />
+            </label>
+            <label style="display: grid; gap: 8px; font-size: 14px; color: #B5B5AE">Project brief
+              <textarea rows="3" placeholder="Rebrand plus site, six weeks." style="font-family: Geist, sans-serif; font-size: 14px; padding: 11px 14px; border-radius: 8px; background: #141414; border: 1px solid #40413A; color: #F5F5F3; outline: none; resize: vertical" style-focus="border-color: #D8F000"></textarea>
+            </label>
+            <label style="display: grid; gap: 8px; font-size: 14px; color: #DE4135">Budget
+              <input type="text" placeholder="Required to route your enquiry" style="font-family: Geist, sans-serif; font-size: 14px; padding: 11px 14px; border-radius: 8px; background: #141414; border: 1px solid #C52B20; color: #F5F5F3; outline: none" />
+            </label>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #B5B5AE">
+              <span style="width: 40px; height: 22px; border-radius: 999px; background: #D8F000; display: flex; align-items: center; padding: 3px; justify-content: flex-end">
+                <span style="width: 16px; height: 16px; border-radius: 999px; background: #141414"></span>
+              </span>Subscribe to the studio log
+            </div>
+          </div>
+
+          <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 20px; align-content: start">
+            <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Badges and tags</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #D8F000; color: #141414">Available</span>
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #2D2E29; color: #B5B5AE">Brand Identity</span>
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid #4B4B46; color: #B5B5AE">Web Design</span>
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #1A3D27; color: #55BE7C">Shipped</span>
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #47130F; color: #E7726A">Blocked</span>
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #563908; color: #F8C05F">In review</span>
+            </div>
+            <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74; margin-top: 8px">Tabs</div>
+            <div style="display: flex; gap: 4px; border-bottom: 1px solid #333331">
+              <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 12px 16px; background: none; border: none; border-bottom: 2px solid #D8F000; color: #F5F5F3; cursor: pointer; margin-bottom: -1px">Work</button>
+              <button style="font-family: Geist, sans-serif; font-size: 14px; padding: 12px 16px; background: none; border: none; border-bottom: 2px solid transparent; color: #7C7C74; cursor: pointer; margin-bottom: -1px" style-hover="color: #F5F5F3">Services</button>
+              <button style="font-family: Geist, sans-serif; font-size: 14px; padding: 12px 16px; background: none; border: none; border-bottom: 2px solid transparent; color: #7C7C74; cursor: pointer; margin-bottom: -1px" style-hover="color: #F5F5F3">Process</button>
+              <button style="font-family: Geist, sans-serif; font-size: 14px; padding: 12px 16px; background: none; border: none; border-bottom: 2px solid transparent; color: #7C7C74; cursor: pointer; margin-bottom: -1px" style-hover="color: #F5F5F3">About</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 24px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Cards</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+            <div style="border-radius: 10px; background: #141414; border: 1px solid #2D2E29; overflow: hidden">
+              <div style="height: 132px; background: #212120; display: flex; align-items: center; justify-content: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #4B4B46">16:9 image slot</div>
+              <div style="padding: 20px; display: grid; gap: 8px">
+                <div style="font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #D8F000">Case study</div>
+                <div style="font-size: 16px; font-weight: 500">LaunchDarkly rebrand</div>
+                <div style="font-size: 14px; line-height: 22px; color: #97978F">Identity, site and launch film in nine weeks.</div>
+              </div>
+            </div>
+            <div style="border-radius: 10px; background: #141414; border: 1px solid #2D2E29; padding: 20px; display: grid; gap: 10px; align-content: start">
+              <div style="font-size: 16px; font-weight: 500">Stat card</div>
+              <div style="font-size: 48px; line-height: 56px; font-weight: 500; letter-spacing: -0.02em; color: #D8F000">$1B+</div>
+              <div style="font-size: 14px; color: #97978F">Raised by client teams</div>
+            </div>
+            <div style="border-radius: 10px; background: #D8F000; color: #141414; padding: 20px; display: grid; gap: 10px; align-content: start">
+              <div style="font-size: 16px; font-weight: 600">Accent card</div>
+              <div style="font-size: 14px; line-height: 22px">Surface/action carries copy at Text/on-action. Use once per viewport.</div>
+              <div style="font-family: 'Geist Mono', monospace; font-size: 11px; margin-top: 4px">→ Book a call</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 24px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Table</div>
+          <div style="border-radius: 10px; border: 1px solid #2D2E29; overflow: hidden">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 110px; background: #141414; border-bottom: 1px solid #2D2E29; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">
+              <div style="padding: 12px 16px">Project</div>
+              <div style="padding: 12px 16px">Client</div>
+              <div style="padding: 12px 16px">Type</div>
+              <div style="padding: 12px 16px">Status</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 110px; border-bottom: 1px solid #212120; font-size: 14px; align-items: center">
+              <div style="padding: 14px 16px; color: #F5F5F3">LaunchDarkly explainer</div>
+              <div style="padding: 14px 16px; color: #97978F">LaunchDarkly</div>
+              <div style="padding: 14px 16px; color: #97978F">Video</div>
+              <div style="padding: 14px 16px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #1A3D27; color: #81CF9E">Shipped</span></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 110px; border-bottom: 1px solid #212120; font-size: 14px; align-items: center">
+              <div style="padding: 14px 16px; color: #F5F5F3">Galaxy event identity</div>
+              <div style="padding: 14px 16px; color: #97978F">Galaxy</div>
+              <div style="padding: 14px 16px; color: #97978F">Brand</div>
+              <div style="padding: 14px 16px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #1A3D27; color: #81CF9E">Shipped</span></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 110px; border-bottom: 1px solid #212120; font-size: 14px; align-items: center">
+              <div style="padding: 14px 16px; color: #F5F5F3">Product UI refresh</div>
+              <div style="padding: 14px 16px; color: #97978F">ProductDiscovery</div>
+              <div style="padding: 14px 16px; color: #97978F">Product</div>
+              <div style="padding: 14px 16px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #563908; color: #F8C05F">In review</span></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 110px; font-size: 14px; align-items: center">
+              <div style="padding: 14px 16px; color: #F5F5F3">Site rebuild</div>
+              <div style="padding: 14px 16px; color: #97978F">Sony Music</div>
+              <div style="padding: 14px 16px; color: #97978F">Web</div>
+              <div style="padding: 14px 16px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #47130F; color: #E7726A">Blocked</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
+          <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 20px; align-content: start">
+            <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Modal</div>
+            <div style="border-radius: 12px; background: #212120; border: 1px solid #40413A; padding: 24px; display: grid; gap: 16px">
+              <div style="font-size: 20px; font-weight: 500">Start a project?</div>
+              <div style="font-size: 14px; line-height: 22px; color: #97978F">This sends your brief straight to Michael. Expect a reply inside one working day.</div>
+              <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px">
+                <button style="font-family: Geist, sans-serif; font-size: 14px; padding: 9px 16px; border-radius: 999px; border: 1px solid #4B4B46; background: transparent; color: #B5B5AE; cursor: pointer">Cancel</button>
+                <button style="font-family: Geist, sans-serif; font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 999px; border: none; background: #D8F000; color: #141414; cursor: pointer">Send brief</button>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 20px; align-content: start">
+            <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Toasts</div>
+            <div style="display: grid; gap: 10px">
+              <div style="padding: 14px 16px; border-radius: 8px; background: #1A3D27; border: 1px solid #2B7346; font-size: 14px; color: #81CF9E">Brief sent. You'll hear back by Thursday.</div>
+              <div style="padding: 14px 16px; border-radius: 8px; background: #47130F; border: 1px solid #881E16; font-size: 14px; color: #E7726A">Upload failed — file over 25MB.</div>
+              <div style="padding: 14px 16px; border-radius: 8px; background: #563908; border: 1px solid #9E6707; font-size: 14px; color: #F8C05F">Two slots left this quarter.</div>
+              <div style="padding: 14px 16px; border-radius: 8px; background: #212120; border: 1px solid #40413A; font-size: 14px; color: #B5B5AE">Draft saved automatically.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 28px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Charts</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px">
+            <div style="display: grid; gap: 16px">
+              <div style="font-size: 14px; color: #B5B5AE">Engagements by quarter</div>
+              <div style="display: flex; align-items: flex-end; gap: 12px; height: 160px">
+                <sc-for list="{{ chartBars }}" as="b" hint-placeholder-count="6">
+                  <div style="flex: 1; display: grid; gap: 8px; justify-items: center; align-content: end">
+                    <div style="width: 100%; border-radius: 4px 4px 0 0; height: {{ b.h }}; background: {{ b.color }}"></div>
+                    <div style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #63635C">{{ b.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: grid; gap: 16px">
+              <div style="font-size: 14px; color: #B5B5AE">Retainer utilisation</div>
+              <div>{{ sparkline }}</div>
+              <div style="display: flex; gap: 20px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #7C7C74">
+                <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #D8F000"></span>Billed</span>
+                <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #4B4B46"></span>Capacity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 32px; border-radius: 12px; background: #1D1E1B; border: 1px solid #2D2E29; display: grid; gap: 24px">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C7C74">Nav / header</div>
+          <div style="border-radius: 10px; background: #141414; border: 1px solid #2D2E29; padding: 16px 24px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32px">
+            <img src="assets/lostudio-logo.svg" alt="Lo Studio" style="height: 18px; width: auto; display: block; justify-self: start" />
+            <div style="display: flex; gap: 24px; font-size: 14px; color: #97978F; margin: 0 auto">
+              <span style="color: #F5F5F3">Work</span><span>Services</span><span>Process</span><span>About</span><span>FAQ</span>
+            </div>
+            <button style="font-family: Geist, sans-serif; font-size: 13px; font-weight: 500; padding: 9px 16px; border-radius: 999px; border: none; background: #D8F000; color: #141414; cursor: pointer; justify-self: end">Book a call</button>
+          </div>
+          <div style="border-radius: 10px; background: #141414; border: 1px solid #2D2E29; padding: 14px 20px; display: flex; align-items: center; gap: 16px; max-width: 393px">
+            <img src="assets/lostudio-logo.svg" alt="Lo Studio" style="height: 16px; width: auto; display: block; flex: none" />
+            <div style="margin-left: auto; display: grid; gap: 5px">
+              <span style="width: 20px; height: 2px; background: #F5F5F3"></span>
+              <span style="width: 20px; height: 2px; background: #F5F5F3"></span>
+            </div>
+          </div>
+          <div style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #63635C">Phone collapses the link row — Responsive/ShowFullMenu is False below 1024.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tokenFormat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;path&quot;,&quot;css&quot;,&quot;tailwind&quot;],&quot;default&quot;:&quot;path&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Documentation&quot;},&quot;showValues&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Documentation&quot;}}">
+const S = (o) => Object.entries(o).map(([step, hex]) => ({ step, hex }));
+
+const LIME = { 50:"#F9FBE6",100:"#F3F8CB",200:"#F4FF90",300:"#EEFF53",400:"#E8FF16",500:"#D8F000",600:"#B0C300",700:"#90A000",800:"#707C00",900:"#4C5404",950:"#323703" };
+const GREEN = { 50:"#EBF5EE",100:"#D6EBDE",200:"#AEE0C0",300:"#81CF9E",400:"#55BE7C",500:"#3FA665",600:"#358D55",700:"#2B7346",800:"#225936",900:"#1A3D27",950:"#112719" };
+const RED = { 50:"#F8E9E7",100:"#F1D2D0",200:"#EFA49F",300:"#E7726A",400:"#DE4135",500:"#C52B20",600:"#A7241B",700:"#881E16",800:"#691711",900:"#47130F",950:"#2E0C0A" };
+const YELLOW = { 50:"#FBF5EB",100:"#F7E9D1",200:"#FBD79A",300:"#F8C05F",400:"#F6A924",500:"#E39309",600:"#C17D08",700:"#9E6707",800:"#7C5105",900:"#563908",950:"#3A2605" };
+const GREY = { 50:"#F5F5F3",100:"#E8E8E5",200:"#D2D2CD",300:"#B5B5AE",400:"#97978F",500:"#7C7C74",600:"#63635C",700:"#4B4B46",800:"#333331",900:"#212120",950:"#141414" };
+
+const RESOLVE = { Primary: LIME, Success: GREEN, Error: RED, Warning: YELLOW, Neutral: GREY };
+const ref = (spec) => {
+  const [role, step] = spec.split("/");
+  if (step === "White") return "#FFFFFF";
+  if (step === "Black") return "#000000";
+  return RESOLVE[role][step];
+};
+const withExtremes = (obj) => S(obj).concat([{ step: "White", hex: "#FFFFFF" }, { step: "Black", hex: "#000000" }]);
+
+class Component extends DCLogic {
+  renderVals() {
+    const fmt = this.props.tokenFormat ?? "path";
+    const showValues = this.props.showValues ?? true;
+    const val = (hex) => (showValues ? hex : "");
+
+    const brandScales = [
+      { name: "Lime", note: "primary hue · anchored at 500 = #D8F000", steps: S(LIME) },
+      { name: "Green", note: "success · 142° / 45%", steps: S(GREEN) },
+      { name: "Red", note: "error · 4° / 72%", steps: S(RED) },
+      { name: "Yellow", note: "warning · 38° / 92%", steps: S(YELLOW) },
+      { name: "Grey", note: "neutral · lime-tinted, 950 = the site canvas", steps: withExtremes(GREY) },
+    ].map((g) => ({ ...g, steps: g.steps.map((s) => ({ ...s, value: val(s.hex) })) }));
+
+    const aliasRoles = [
+      { name: "Primary", aliases: "→ Brand/Color/Lime/*", steps: S(LIME) },
+      { name: "Success", aliases: "→ Brand/Color/Green/*", steps: S(GREEN) },
+      { name: "Error", aliases: "→ Brand/Color/Red/*", steps: S(RED) },
+      { name: "Warning", aliases: "→ Brand/Color/Yellow/*", steps: S(YELLOW) },
+      { name: "Neutral", aliases: "→ Brand/Color/Grey/* plus White and Black", steps: withExtremes(GREY) },
+    ];
+
+    const label = (group, token) => {
+      if (fmt === "css") return "--" + (group + "-" + token).toLowerCase();
+      if (fmt === "tailwind") return (group + "-" + token).toLowerCase();
+      return group + "/" + token;
+    };
+
+    const group = (name, key, rows) => ({
+      name,
+      rows: rows.map(([token, dark, light]) => ({
+        token: label(key, token), dark, light, darkHex: ref(dark), lightHex: ref(light),
+      })),
+    });
+
+    const mappedGroups = [
+      group("Surface", "Surface", [
+        ["page", "Neutral/950", "Neutral/White"],
+        ["primary", "Neutral/900", "Neutral/50"],
+        ["secondary", "Neutral/800", "Neutral/100"],
+        ["action", "Primary/500", "Primary/500"],
+        ["action-hover", "Primary/400", "Primary/700"],
+        ["action-hover-light", "Primary/950", "Primary/50"],
+        ["disabled", "Neutral/800", "Neutral/300"],
+        ["success", "Success/900", "Success/50"],
+        ["error", "Error/900", "Error/50"],
+        ["warning", "Warning/900", "Warning/50"],
+      ]),
+      group("Text · Icon mirrors this exactly", "Text", [
+        ["primary", "Neutral/50", "Neutral/900"],
+        ["secondary", "Neutral/300", "Neutral/700"],
+        ["tertiary", "Neutral/500", "Neutral/500"],
+        ["on-action", "Neutral/950", "Neutral/950"],
+        ["action", "Primary/500", "Primary/600"],
+        ["action-hover", "Primary/400", "Primary/700"],
+        ["disabled", "Neutral/600", "Neutral/300"],
+        ["success", "Success/400", "Success/700"],
+        ["error", "Error/400", "Error/700"],
+        ["warning", "Warning/300", "Warning/800"],
+      ]),
+      group("Border", "Border", [
+        ["primary", "Neutral/700", "Neutral/300"],
+        ["secondary", "Neutral/800", "Neutral/200"],
+        ["subtle", "Neutral/900", "Neutral/100"],
+        ["action", "Primary/500", "Primary/500"],
+        ["action-hover", "Primary/400", "Primary/700"],
+        ["disabled", "Neutral/800", "Neutral/200"],
+        ["focus", "Primary/400", "Primary/500"],
+        ["success", "Success/500", "Success/500"],
+        ["error", "Error/500", "Error/500"],
+        ["warning", "Warning/500", "Warning/500"],
+      ]),
+    ];
+
+    const sizeSteps = [2,4,8,10,12,14,16,18,20,24,28,32,36,40,48,56,64,68,72,76,80,88,96,128].map((n) => "size-" + n);
+
+    const weights = [["Thin",100],["ExtraLight",200],["Light",300],["Regular",400],["Medium",500],["Semibold",600],["Bold",700],["ExtraBold",800],["Black",900]]
+      .map(([name, value]) => ({ name, value }));
+
+    const spacingSample = [0,4,8,12,16,24,32,48,64,96,128].map((n) => ({ n, px: Math.max(2, n) + "px" }));
+    const radiusSample = [0,4,8,10,12,16,24,32,999].map((n) => ({ n: n === 999 ? "full" : n, px: (n === 999 ? 40 : n) + "px" }));
+
+    const table = (name, rows) => ({ name, rows: rows.map(([token, d, t, p]) => ({ token, d, t, p })) });
+    const responsiveTables = [
+      table("Jumper → Brand/Spacing", [
+        ["Jumper/64-48","spacing-64","spacing-48","spacing-24"],
+        ["Jumper/32-24","spacing-32","spacing-32","spacing-28"],
+        ["Jumper/64-20","spacing-64","spacing-36","spacing-20"],
+        ["Jumper/96-48","spacing-96","spacing-64","spacing-48"],
+        ["Jumper/128-12","spacing-128","spacing-56","spacing-12"],
+      ]),
+      table("Typescale/heading-scale → Brand/Size", [
+        ["h1","size-96","size-64","size-40"],
+        ["h2","size-72","size-56","size-36"],
+        ["h3","size-56","size-48","size-32"],
+        ["h4","size-48","size-40","size-28"],
+        ["h5","size-40","size-32","size-24"],
+        ["h6","size-32","size-28","size-20"],
+      ]),
+      table("Typescale/heading-lineheight → next step up", [
+        ["h1-lineheight","size-128","size-68","size-48"],
+        ["h2-lineheight","size-76","size-64","size-40"],
+        ["h3-lineheight","size-64","size-56","size-36"],
+        ["h4-lineheight","size-56","size-48","size-32"],
+        ["h5-lineheight","size-48","size-36","size-28"],
+        ["h6-lineheight","size-36","size-32","size-24"],
+      ]),
+      table("Typescale/paragraph", [
+        ["body-lg","size-20","size-20","size-16"],
+        ["body-md","size-16","size-16","size-16"],
+        ["body-sm","size-12","size-12","size-12"],
+        ["body-lg-lineheight","size-24","size-24","size-18"],
+        ["body-md-lineheight","size-18","size-18","size-18"],
+        ["body-sm-lineheight","size-14","size-14","size-14"],
+      ]),
+      table("Breakpoint flags", [
+        ["Screen-size","1440","1024","393"],
+        ["ShowFullMenu","True","True","False"],
+      ]),
+    ];
+
+    const elevations = [
+      ["none", "0 · flat"],
+      ["0 1px 2px rgba(20,20,20,0.08)", "1 · 1/2/0 · 8%"],
+      ["0 2px 8px rgba(20,20,20,0.12)", "2 · 2/8/0 · 12%"],
+      ["0 4px 16px rgba(20,20,20,0.16)", "3 · 4/16/0 · 16%"],
+      ["0 8px 24px rgba(20,20,20,0.16)", "4 · 8/24/0 · 16%"],
+      ["0 16px 32px rgba(20,20,20,0.24)", "5 · 16/32/0 · 24%"],
+    ].map(([shadow, label]) => ({ shadow, label }));
+
+    const chartBars = [["Q1",56],["Q2",84],["Q3",72],["Q4",120],["Q1",104],["Q2",148]]
+      .map(([label, h], i) => ({ label, h: h + "px", color: i === 5 ? "#D8F000" : "#4B4B46" }));
+
+    const sparkline = React.createElement("svg", { viewBox: "0 0 320 120", preserveAspectRatio: "none", style: { width: "100%", height: "120px", display: "block" } },
+      React.createElement("polyline", { points: "0,96 53,72 106,80 160,44 213,52 266,24 320,16", fill: "none", stroke: "#D8F000", strokeWidth: 2 }),
+      React.createElement("polyline", { points: "0,110 53,102 106,98 160,86 213,84 266,70 320,64", fill: "none", stroke: "#4B4B46", strokeWidth: 2, strokeDasharray: "4 4" })
+    );
+
+    return { brandScales, aliasRoles, mappedGroups, sizeSteps, weights, spacingSample, radiusSample, responsiveTables, elevations, chartBars, sparkline };
+  }
+}
+
+</script>
+</body>
+</html>
